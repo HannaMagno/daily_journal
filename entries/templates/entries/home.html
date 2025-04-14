@@ -1,0 +1,54 @@
+{% extends 'entries/base.html' %}
+{% load static %}
+
+{% block title %}Welcome to Daily Journal{% endblock %}
+
+{% block content %}
+<div class="px-4 py-5 my-5">
+    <div class="row align-items-center">
+        <div class="col-lg-6 text-center text-lg-start">
+            <h1 class="display-4 fw-bold">Welcome to Daily Journal</h1>
+            <div class="mx-auto">
+                <p class="lead mb-4">
+                    Capture your thoughts, feelings, and experiences with our simple and elegant journaling app.
+                    Start writing your story today.
+                </p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-start">
+                    <a href="{% url 'entry-create' %}" class="btn btn-primary btn-lg px-4 gap-3">Start Writing</a>
+                    <a href="{% url 'entry-list' %}" class="btn btn-outline-secondary btn-lg px-4">View Journal</a>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-md-4">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Entries</h5>
+                            <p class="display-6">{{ total_entries }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Latest Entry</h5>
+                            <p class="h6">{{ latest_entry.date_posted|date:"F d, Y" }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Current Mood</h5>
+                            <p class="display-6">{{ latest_entry.mood|default:"😊" }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 text-center">
+            <img src="{% static 'entries/images/img.png' %}" alt="Diary illustration" class="img-fluid floating-image" style="max-width: 80%;">
+        </div>
+    </div>
+</div>
+{% endblock %}
